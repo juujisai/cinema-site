@@ -1,5 +1,5 @@
 import React from 'react';
-
+import '../style/Banner.css';
 const Banner = ({ data, animate = true }) => {
   const bannerRef = React.useRef('')
   let bannerSwitchNumber = React.useRef(1)
