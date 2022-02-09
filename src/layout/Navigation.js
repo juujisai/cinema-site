@@ -13,12 +13,12 @@ const menuData = [
     name: 'filmy'
   },
   {
-    path: '/reservation',
-    name: 'rezerwacja'
+    path: '/rep',
+    name: 'repertuar'
   },
   {
-    path: '/contact',
-    name: 'kontakt'
+    path: '/info',
+    name: 'informacje'
   },
 
 ]
