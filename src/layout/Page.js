@@ -11,8 +11,8 @@ const Page = () => {
     <div className='main-page-content'>
       <Routes>
         <Route path='/' element={<HomePage />}></Route>
-        <Route path='/contact' element={<ContactPage />}></Route>
-        <Route path='/reservation' element={<ReservationPage />}></Route>
+        <Route path='/info' element={<ContactPage />}></Route>
+        <Route path='/rep' element={<ReservationPage />}></Route>
         <Route path='/movies' element={<MoviesPage />}></Route>
         <Route element={<ErrorPage />}> </Route>
       </Routes>

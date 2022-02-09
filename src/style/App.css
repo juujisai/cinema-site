@@ -165,7 +165,10 @@ body {
   padding: 15px 10%;
   color: white;
   background-color: rgba(0, 0, 0, .65);
+  transition: .3s;
+  overflow: hidden;
 }
+
 
 .banner__wrap-info__p--main {
   margin-bottom: 15px;
@@ -173,8 +176,25 @@ body {
   border-bottom: 2px solid #fff;
   font-size: 1.25em;
   text-transform: uppercase;
+  transform: translate(0, -100%);
+  transition: .3s;
 }
 
+.banner__wrap-info__p--secondary {
+  transform: translate(0, 100%);
+  transition: .3s;
+}
+
+
+.active .banner__wrap-info__p--main {
+  transform: translate(0, 0%);
+
+}
+
+.active .banner__wrap-info__p--secondary {
+  transform: translate(0, 0%);
+
+}
 
 .banner-page-squares {
   position: absolute;

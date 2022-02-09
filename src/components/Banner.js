@@ -1,10 +1,10 @@
 import React from 'react';
 
-const Banner = ({ data, animate }) => {
+const Banner = ({ data, animate = true }) => {
   const bannerRef = React.useRef('')
-  let bannerSwitchNumber = React.useRef(0)
-  let animationTime = 1000
-  let timeoutTime = 2000
+  let bannerSwitchNumber = React.useRef(1)
+  let animationTime = 3000
+  let timeoutTime = 500
 
 
   const bannerData = data.map((item, id) => (
@@ -12,7 +12,7 @@ const Banner = ({ data, animate }) => {
       <div className="banner-image">
         <img src={item.image} alt={item.caption} className="banner-image__img" />
       </div>
-      <div className="banner__wrap-info">
+      <div className={`banner__wrap-info ${id === 0 ? 'active' : null}`}>
         <p className="banner__wrap-info__p--main">{item.caption}</p>
         <p className="banner__wrap-info__p--secondary">{item.desc}</p>
       </div>
@@ -32,7 +32,6 @@ const Banner = ({ data, animate }) => {
     let timeout;
     // function to switch images in banner / change current square
     const animateBanner = () => {
-
       if (bannerSwitchNumber.current < data.length) {
         bannerRef.current.style.transform = `translate(${-100 / data.length * bannerSwitchNumber.current}%)`
         bannerSwitchNumber.current++
@@ -40,6 +39,15 @@ const Banner = ({ data, animate }) => {
       } else {
         bannerRef.current.style.transform = `translate(0%)`
         bannerSwitchNumber.current = 1
+      }
+
+      // animate info 
+      if (animate) {
+        const childrenEl = [...bannerRef.current.children]
+        const infoOfCurrentChildren = childrenEl[bannerSwitchNumber.current - 1].children[1]
+
+        childrenEl.forEach(item => { item.children[1].classList.remove('active') })
+        infoOfCurrentChildren.classList.add('active')
       }
 
       // change current square
