@@ -3,8 +3,8 @@ import React from 'react';
 const Banner = ({ data, animate }) => {
   const bannerRef = React.useRef('')
   let bannerSwitchNumber = React.useRef(0)
-
-
+  let animationTime = 1000
+  let timeoutTime = 2000
 
 
   const bannerData = data.map((item, id) => (
@@ -20,11 +20,17 @@ const Banner = ({ data, animate }) => {
   ))
 
   const box = data.map((item, id) => (
-    <span className="banner-page-squares__span" key={id} ></span>
+    <span className={`banner-page-squares__span`} key={id} data-value={id + 0}></span>
   ))
 
 
   React.useEffect(() => {
+    // get all boxes and change collor of the first one to current color
+    const boxes = [...document.querySelectorAll(`.banner-page-squares__span`)]
+    boxes[0].classList.add('banner-page-squares__span--current')
+
+    let timeout;
+    // function to switch images in banner / change current square
     const animateBanner = () => {
 
       if (bannerSwitchNumber.current < data.length) {
@@ -36,20 +42,46 @@ const Banner = ({ data, animate }) => {
         bannerSwitchNumber.current = 1
       }
 
-      const boxes = [...document.querySelectorAll(`.banner-page-squares__span`)]
+      // change current square
       boxes.forEach(item => item.classList.remove('banner-page-squares__span--current'))
       boxes[bannerSwitchNumber.current - 1].classList.add('banner-page-squares__span--current')
 
     }
 
+    // start animating
     let interval = setInterval(() => {
       animateBanner()
-    }, 1000)
+    }, animationTime)
+
+    // functions to switch banner image after clicking on a box
+    boxes.forEach(item => {
+      item.addEventListener('click', function () {
+        // stop switch animation
+        clearInterval(interval)
+        // get value of clicked square
+        bannerSwitchNumber.current = this.dataset.value
+        // switch banner element to clicked one
+        bannerRef.current.style.transform = `translate(${-100 / data.length * bannerSwitchNumber.current}%)`
+        // switch current square to the clicked one
+        boxes.forEach(item => item.classList.remove('banner-page-squares__span--current'))
+        boxes[bannerSwitchNumber.current].classList.add('banner-page-squares__span--current')
+
+        // start switch animation after delay
+        timeout = setTimeout(() => {
+          interval = setInterval(() => {
+            animateBanner()
+          }, animationTime)
+        }, timeoutTime)
+      })
+    })
+
 
     return () => {
+      // end animation after component unmount
       clearInterval(interval)
+      clearTimeout(timeout)
     }
-  }, [bannerSwitchNumber, data])
+  }, [bannerSwitchNumber, data, animationTime, timeoutTime])
 
   return (
     <div className="banner-page">
