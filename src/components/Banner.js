@@ -74,6 +74,9 @@ const Banner = ({ data, animate = true }) => {
         boxes.forEach(item => item.classList.remove('banner-page-squares__span--current'))
         boxes[bannerSwitchNumber.current].classList.add('banner-page-squares__span--current')
 
+        // animate text info of clicked panel
+        animate && bannerRef.current.children[bannerSwitchNumber.current].children[1].classList.add('active')
+
         // start switch animation after delay
         timeout = setTimeout(() => {
           interval = setInterval(() => {
@@ -89,7 +92,7 @@ const Banner = ({ data, animate = true }) => {
       clearInterval(interval)
       clearTimeout(timeout)
     }
-  }, [bannerSwitchNumber, data, animationTime, timeoutTime])
+  }, [bannerSwitchNumber, data, animationTime, timeoutTime, animate])
 
   return (
     <div className="banner-page">
