@@ -18,14 +18,15 @@ export const fetchMovieDataFailure = (error) => {
 
 export const fetchMovieData = () => {
   return (dispatch) => {
-    console.log(a)
     dispatch(fetchMovieDataRequest())
 
     axios.get(a)
       .then(response => {
-        console.log(response)
+        dispatch(fetchMovieDataSuccess(response.data.data))
       })
-
+      .catch(err => {
+        dispatch(fetchMovieDataFailure(err))
+      })
 
 
 

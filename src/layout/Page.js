@@ -5,8 +5,16 @@ import ContactPage from '../page/ContactPage'
 import ErrorPage from '../page/ErrorPage'
 import MoviesPage from '../page/MoviesPage'
 import ReservationPage from '../page/ReservationPage'
+import { fetchMovieData } from '../redux/actions/moviesAction'
+import { connect } from 'react-redux'
 
-const Page = () => {
+
+
+const Page = ({ fetchMovieDataFunction }) => {
+  React.useEffect(() => {
+    fetchMovieDataFunction()
+  }, [fetchMovieDataFunction])
+
   return (
     <div className='main-page-content'>
       <Routes>
@@ -19,5 +27,13 @@ const Page = () => {
     </div>
   );
 }
+const mapStateToProps = ({ movies }) => {
+  return { movies }
+}
 
-export default Page;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchMovieDataFunction: () => dispatch(fetchMovieData())
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Page);

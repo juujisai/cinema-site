@@ -10,16 +10,16 @@ import Page from './layout/Page';
 import Footer from './layout/Footer';
 
 
-import {moviesReducer} from './redux/reducers/moviesReducer'
+import { moviesReducer } from './redux/reducers/moviesReducer'
 
 
 
 const rootReducer = combineReducers({
-movies: moviesReducer
+  movies: moviesReducer
 })
 
 const store = createStore(
-  rootReducer, 
+  rootReducer,
   composeWithDevTools(applyMiddleware(thunk))
 )
 
@@ -27,13 +27,13 @@ const store = createStore(
 function App() {
   return (
     <Router>
-    <Provider store={store}>
-    <div className="App">
-<Header/>
-<Page/>
-<Footer/>
-    </div>
-    </Provider>
+      <Provider store={store}>
+        <div className="App">
+          <Header />
+          <Page />
+          <Footer />
+        </div>
+      </Provider>
     </Router>
   );
 }
