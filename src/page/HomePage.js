@@ -9,9 +9,9 @@ const HomePage = ({ movies }) => {
   const moviesToShow = movies.movies.map((item, id) =>
     <MoviePreview key={id} data={item} />
   )
-  React.useEffect(() => {
-    console.log(movies.movies)
-  }, [movies])
+  // React.useEffect(() => {
+  //   console.log(movies.movies)
+  // }, [movies])
 
   if (movies.loading) return <Loader />
 
