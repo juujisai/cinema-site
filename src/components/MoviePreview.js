@@ -34,7 +34,7 @@ const MoviePreview = ({ data: { attributes: { name, author, category, timeOfPlay
           >
           </iframe>
         }
-        {!isDesktop && <img src={`https://strapi-cinema-app.herokuapp.com${image.data[0].attributes.url}`} alt={`Zdjęcie przedstawiające plakat filmu ${name}`} className='movie-preview-thumbnail__img' />}
+        {!isDesktop && <img src={`https://i.imgur.com/XUqZ0ZB.png`} alt={`Zdjęcie przedstawiające plakat filmu ${name}`} className='movie-preview-thumbnail__img' />}
 
       </div>
       <div className='movie-preview-info'>
