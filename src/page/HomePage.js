@@ -6,9 +6,11 @@ import Loader from '../components/Loader'
 import MoviePreview from '../components/MoviePreview'
 
 const HomePage = ({ movies }) => {
-  const moviesToShow = movies.movies.map((item, id) =>
+  const featuredMovies = movies.movies.filter(item => item.attributes.featured)
+  const moviesToShow = featuredMovies.map((item, id) =>
     <MoviePreview key={id} data={item} />
   )
+  console.log(movies.movies)
   // React.useEffect(() => {
   //   console.log(movies.movies)
   // }, [movies])
