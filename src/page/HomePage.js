@@ -24,6 +24,8 @@ const HomePage = ({ movies }) => {
         animate={true}
       />
       <div className="movie-preview-cont">
+        <h1 className="movie-preview-cont__h1">Proponowane filmy</h1>
+
         {moviesToShow}
       </div>
     </div>

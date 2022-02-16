@@ -6,8 +6,6 @@ const MoviePreview = ({ data: { attributes: { name, author, ytlink, yearOfPremie
   const [canAutoplay, setCanAutoplay] = React.useState(0)
   const ytlinkReworked = ytlink.replace('watch?v=', 'embed/')
 
-  // import image from `../media/imageHost/${imageThumbnail}.webp`
-
   let namePath = name
   namePath = [...name].map(item => item === ' ' ? item = '-' : item).filter(item => item !== "'").join('').toLowerCase()
 
