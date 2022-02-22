@@ -15,10 +15,10 @@ const HomePage = ({ movies }) => {
   //   console.log(movies.movies)
   // }, [movies])
 
-  let kek = true
+  // let kek = true
 
-  // if (movies.loading) return <Loader />
-  if (kek) return <Loader />
+  if (movies.loading) return <Loader />
+  // if (kek) return <Loader />
 
   return (
     <div className='home-page page-content'>

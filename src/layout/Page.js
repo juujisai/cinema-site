@@ -24,7 +24,7 @@ const Page = ({ fetchMovieDataFunction }) => {
         <Route path='/rep' element={<ReservationPage />}></Route>
         <Route path='/movies' element={<MoviesPage />}></Route>
         <Route path={'/movies/:name'} element={<MoviePage />}></Route>
-        <Route element={<ErrorPage />}> </Route>
+        <Route path="*" element={<ErrorPage />}> </Route>
       </Routes>
     </div>
   );
