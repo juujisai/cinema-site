@@ -10,15 +10,9 @@ const HomePage = ({ movies }) => {
   const moviesToShow = featuredMovies.map((item, id) =>
     <MoviePreview key={id} data={item} />
   )
-  console.log(movies.movies)
-  // React.useEffect(() => {
-  //   console.log(movies.movies)
-  // }, [movies])
-
-  // let kek = true
 
   if (movies.loading) return <Loader />
-  // if (kek) return <Loader />
+
 
   return (
     <div className='home-page page-content'>
