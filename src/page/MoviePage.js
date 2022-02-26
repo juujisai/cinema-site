@@ -61,7 +61,7 @@ const MoviePage = ({ movies }) => {
       </div>
     </div>
 
-    {videoVisible && <div className="yt-video" onClick={() => setVideoVisible(!videoVisible)}>
+    {videoVisible && <div className="yt-video" onClick={() => { setVideoVisible(!videoVisible); setCanAutoplay(!canAutoplay) }}>
       <iframe
         className='movie-preview-thumbnail__iframe'
         title="YouTube video player"
