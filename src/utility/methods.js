@@ -33,7 +33,15 @@ export const getSource = (i) => {
   let source;
   let images = [ca1, ca2, ca3, dk1, dk2, dk3, dlu1, dlu2, dlu3, int1, int2, int3, ip1, ip2, ip3, k1, k2, k3, leg1, leg2, leg3, ls1, ls2, ls3, m1, m2, m3, vendetta1, vendetta2, vendetta3]
 
-  let a = images.filter(item => item.includes(i))
+
+
+
+
+  let a = images.filter(item => item.split('media/')[1].split('.')[0] === i)
+
+
+
+
   a.length === 0 ? source = ca1 : source = a[0]
 
   return source

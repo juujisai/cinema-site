@@ -181,14 +181,16 @@ body {
 }
 
 .movie-preview-cont__h1,
-.category-page__h1 {
+.category-page__h1,
+.main-header__h1 {
   padding: 15px 10px;
   background-color: var(--mainBrown);
   font-size: 1.25em;
   color: white;
 }
 
-.category-page__h1 {
+.category-page__h1,
+.main-header__h1 {
   margin-bottom: 50px;
 }
 
