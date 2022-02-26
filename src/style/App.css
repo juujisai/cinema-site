@@ -398,3 +398,25 @@ div.movie-yt {
   top: 50%;
   transform: translate(-50%, -50%);
 }
+
+
+/* filter */
+
+.filter {
+  margin-left: 10%;
+}
+
+.filter-controls {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+}
+
+
+.filter-controls__span--icon {
+  font-size: 1.3em;
+  margin-right: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
