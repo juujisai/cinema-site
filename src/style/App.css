@@ -426,7 +426,7 @@ div.movie-yt {
   position: fixed;
   left: 0;
   top: 0;
-  background-color: red;
+  background-color: var(--lightBrown);
   min-height: 30vh;
   width: 100%;
   transform: translateY(0);
