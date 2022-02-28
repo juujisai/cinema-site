@@ -5,8 +5,8 @@ import Loader from './Loader'
 const videoPlayTime = ['12:00', '14:00', '16:00', '18:00', '20:00']
 
 const Filter = ({ movies, showCat }) => {
-  const [category, setCategory] = React.useState('')
-  const [timeOfPlay, setTimeOfPlay] = React.useState('')
+  const [category, setCategory] = React.useState('all')
+  const [timeOfPlay, setTimeOfPlay] = React.useState('all')
   const [yearOfPremiere, setYearOfPremiere] = React.useState(0)
   const [featured, setFeatured] = React.useState(false)
 
@@ -49,14 +49,7 @@ const Filter = ({ movies, showCat }) => {
 
     })
 
-    if (category === '') {
-      setCategory(filters.current.category[0])
-    }
-    if (timeOfPlay === '') {
-      setTimeOfPlay(filters.current.timeOfPlay[0])
-    }
-
-  }, [movies.movies, category, timeOfPlay])
+  }, [movies.movies])
 
 
   if (filters.current.category === []) return <Loader />
@@ -68,6 +61,7 @@ const Filter = ({ movies, showCat }) => {
         <div className="filter-data filter-data--category">
           <label htmlFor="filter-category">Kategoria:</label>
           <select name="filter-category" id="filter-category" value={category} onChange={(e) => setCategory(e.target.value)}>
+            <option value={'all'}>Wszystkie</option>
             {cats}
           </select>
         </div>
@@ -75,6 +69,7 @@ const Filter = ({ movies, showCat }) => {
         <div className="filter-data filter-data--timeOfPlay">
           <label htmlFor="filter-timeOfPlay">Godzina wyświetlania:</label>
           <select name="filter-timeOfPlay" id="filter-timeOfPlay" value={timeOfPlay} onChange={(e) => setTimeOfPlay(e.target.value)}>
+            <option value={'all'}>Wszystkie</option>
             {time}
           </select>
         </div>
