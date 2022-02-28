@@ -1,40 +1,37 @@
 import React from 'react';
 import { connect } from 'react-redux'
+import Loader from './Loader'
 
-const Filter = ({ movies }) => {
-  console.log(movies.movies)
+const Filter = ({ movies, showCat }) => {
 
-  const filters = React.useRef(null)
+  let filters = React.useRef({
+    category: [],
+    timeOfPlay: [],
+    yearOfPremiere: { min: 10000, max: 0 }
+  })
 
 
   React.useEffect(() => {
-    let fs = {
-      category: [],
-      timeOfPlay: [],
-      yearOfPremiere: { min: 10000, max: 0 }
-    };
-
 
     movies.movies.forEach(item => {
-      fs.category = [...new Set([...fs.category, ...item.attributes.category.split(' / ')])]
-      fs.timeOfPlay = [...new Set([...fs.timeOfPlay, item.attributes.timeOfPlay])]
-      // fs.yearOfPremiere.min =
-      if (item.attributes.yearOfPremiere > fs.yearOfPremiere.max) {
-        fs.yearOfPremiere.max = item.attributes.yearOfPremiere
+      filters.current.category = [...new Set([...filters.current.category, ...item.attributes.category.split(' / ')])]
+      filters.current.timeOfPlay = [...new Set([...filters.current.timeOfPlay, item.attributes.timeOfPlay])]
+
+      if (item.attributes.yearOfPremiere > filters.current.yearOfPremiere.max) {
+        filters.current.yearOfPremiere.max = item.attributes.yearOfPremiere
       }
-      if (item.attributes.yearOfPremiere < fs.yearOfPremiere.min) {
-        fs.yearOfPremiere.min = item.attributes.yearOfPremiere
+      if (item.attributes.yearOfPremiere < filters.current.yearOfPremiere.min) {
+        filters.current.yearOfPremiere.min = item.attributes.yearOfPremiere
 
       }
-
 
     })
-    console.log(fs)
 
   }, [movies.movies])
-
+  console.log(showCat)
+  if (filters.current.category === []) return <Loader />
   return (
-    <div>
+    <div className={showCat ? 'filter-container' : 'filter-container filter-hide'}>
 
 
     </div>
