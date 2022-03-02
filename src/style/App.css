@@ -427,7 +427,7 @@ div.movie-yt {
   left: 0;
   top: 0;
   background-color: var(--lightBrown);
-  min-height: 30vh;
+  /* min-height: 30vh; */
   width: 100%;
   transform: translateY(0);
   transition: .3s;
@@ -436,4 +436,59 @@ div.movie-yt {
 .filter-hide {
   transform: translateY(-100%);
 
+}
+
+
+.filter-container__h1 {
+  margin: 15px 0 25px 15px;
+  padding-bottom: 10px;
+  font-size: 1.25em;
+  color: var(--darkBrown);
+  border-bottom: 4px solid var(--darkBrown);
+}
+
+.close-icon {
+  position: absolute;
+  right: 5%;
+  top: 10px;
+  font-size: 2em;
+  color: var(--darkBrown)
+}
+
+
+.filter-data {
+  position: relative;
+  margin: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.filter-data select {
+  display: block;
+  margin-top: 5px;
+  padding: 5px 0 5px;
+}
+
+
+.yearOfPremiere-date {
+  margin: 10px 20px 0;
+}
+
+
+#filter-yearOfPremiere {
+  margin: 10px 20px 0;
+}
+
+.filter-data--featured {
+  display: block;
+}
+
+#filter-featured {
+  margin-left: 25px;
+  vertical-align: middle;
+}
+
+.filter-btn {
+  border: none;
 }

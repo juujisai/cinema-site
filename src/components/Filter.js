@@ -13,6 +13,10 @@ const Filter = ({ movies, showCat, switchVisibility }) => {
   const [featured, setFeatured] = React.useState(false)
 
 
+  let rangeInputRef = React.useRef(null)
+
+
+
   let filters = React.useRef({
     category: [],
     timeOfPlay: [],
@@ -36,6 +40,7 @@ const Filter = ({ movies, showCat, switchVisibility }) => {
 
   React.useEffect(() => {
 
+    // get data for filters
     movies.movies.forEach(item => {
       filters.current.category = [...new Set([...filters.current.category, ...item.attributes.category.split(' / ')])]
       filters.current.timeOfPlay = [...new Set([...filters.current.timeOfPlay, item.attributes.timeOfPlay])]
@@ -48,7 +53,6 @@ const Filter = ({ movies, showCat, switchVisibility }) => {
         filters.current.yearOfPremiere.min = item.attributes.yearOfPremiere
 
       }
-
     })
 
   }, [movies.movies])
@@ -78,10 +82,19 @@ const Filter = ({ movies, showCat, switchVisibility }) => {
           </select>
         </div>
 
-        <div className="filter-data filter-data--yearOfPremiere">
+        <div ref={rangeInputRef} className="filter-data filter-data--yearOfPremiere">
           <label htmlFor="filter-yearOfPremiere">Data premiery:</label>
           <input type="range" id="filter-yearOfPremiere" name="filter-yearOfPremiere" onChange={(e) => setYearOfPremiere(e.target.value)} value={yearOfPremiere}
-            min={filters.current.yearOfPremiere.min} max={filters.current.yearOfPremiere.max} /> <span className="yearOfPremiere-date">{yearOfPremiere}</span>
+            min={filters.current.yearOfPremiere.min} max={filters.current.yearOfPremiere.max} />
+          <span className="yearOfPremiere-date"
+            style={
+              {
+                // dont ask
+                transform: `translateX(calc(${100 * ((yearOfPremiere - filters.current.yearOfPremiere.min) / (filters.current.yearOfPremiere.max - filters.current.yearOfPremiere.min))}% - ${20 * ((yearOfPremiere - filters.current.yearOfPremiere.min) / (filters.current.yearOfPremiere.max - filters.current.yearOfPremiere.min))}px)`,
+              }
+            }
+
+          >{yearOfPremiere}</span>
         </div>
 
         <div className="filter-data filter-data--featured">
