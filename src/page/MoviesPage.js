@@ -4,16 +4,21 @@ import Loader from '../components/Loader'
 import MoviePreview from '../components/MoviePreview'
 import Filter from '../components/Filter'
 import { IoFilter } from 'react-icons/io5'
+import { switchFilterVisibility } from '../redux/actions/moviesAction'
 
-const MoviesPage = ({ movies }) => {
+const MoviesPage = ({ movies, switchVisibility }) => {
   const [showCat, setShowCat] = React.useState(false)
 
+  React.useEffect(() => {
+    setShowCat(movies.filterVisibility)
+  }, [movies.filterVisibility])
 
   if (movies.loading) return <Loader />
 
   const moviesToShow = movies.movies.map((item, id) =>
     <MoviePreview key={id} data={item} />
   )
+
 
   return (
     <div className="movies-page">
@@ -22,7 +27,7 @@ const MoviesPage = ({ movies }) => {
       <h1 className="main-header__h1">Aktualnie grane filmy </h1>
 
       <div className="filter">
-        <div className="filter-controls" onClick={() => setShowCat(!showCat)}>
+        <div className="filter-controls" onClick={() => switchVisibility()}>
           <span className='filter-controls__span filter-controls__span--icon'><IoFilter /></span> <span className="filetr-controls__span">Filtruj</span>
         </div>
         <div className="filter-wrap">
@@ -40,5 +45,9 @@ const MoviesPage = ({ movies }) => {
 const mapStateToProps = ({ movies }) => {
   return { movies }
 }
-
-export default connect(mapStateToProps)(MoviesPage);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    switchVisibility: () => dispatch(switchFilterVisibility())
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(MoviesPage);

@@ -1,10 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import Loader from './Loader'
+import { switchFilterVisibility } from '../redux/actions/moviesAction'
+import { IoClose } from 'react-icons/io5'
 
 const videoPlayTime = ['12:00', '14:00', '16:00', '18:00', '20:00']
 
-const Filter = ({ movies, showCat }) => {
+const Filter = ({ movies, showCat, switchVisibility }) => {
   const [category, setCategory] = React.useState('all')
   const [timeOfPlay, setTimeOfPlay] = React.useState('all')
   const [yearOfPremiere, setYearOfPremiere] = React.useState(0)
@@ -56,6 +58,8 @@ const Filter = ({ movies, showCat }) => {
   return (
     <div className={showCat ? 'filter-container' : 'filter-container filter-hide'}>
       <h1 className="filter-container__h1">Filtry</h1>
+      <span className="close-icon"><IoClose onClick={() => switchVisibility()} /></span>
+
       <div className="filters-filters">
 
         <div className="filter-data filter-data--category">
@@ -100,7 +104,7 @@ const mapStateToProps = ({ movies }) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-
+    switchVisibility: () => dispatch(switchFilterVisibility())
   }
 }
 
