@@ -498,3 +498,64 @@ div.movie-yt {
   /* width: 70%; */
   text-align: center;
 }
+
+
+/* reservation page */
+
+.reservation-days {
+  margin: 25px 10%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: space-between;
+  justify-content: center;
+  overflow-x: scroll;
+}
+
+
+.reservation-single-day {
+  /* margin-right: 15px; */
+  position: relative;
+  /* flex-basis: 200px; */
+  width: 50%;
+  max-width: 150px;
+  /* max-width: 200px; */
+  /* min-height: 150px; */
+  height: 150px;
+  transition: .3s;
+  border-radius: 20px;
+}
+
+.reservation-single-day__span {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  transition: .3s;
+}
+
+.reservation-single-day-icon {
+  left: 50%;
+  top: 50%;
+  font-size: 4em;
+  color: var(--mainBrown)
+}
+
+.reservation-single-day-day {
+  left: 50%;
+  top: 50%;
+  font-size: 2em;
+  font-weight: bold;
+  color: var(--mainBrown)
+}
+
+.reservation-single-day-month {
+  left: 50%;
+  top: 0%;
+  transform: translate(-50%, 50%);
+  font-weight: bold;
+}
+
+.reservation-single-day-name {
+  left: 50%;
+  bottom: 0%;
+  transform: translate(-50%, -100%);
+
+}
