@@ -1,11 +1,36 @@
 import React from 'react';
 import { BsCalendar } from 'react-icons/bs'
+import { connect } from 'react-redux'
+import MovieReservationPreview from '../components/MovieReservationPreview';
+import Loader from '../components/Loader'
 
-const ReservationPage = () => {
+
+const ReservationPage = ({ movies }) => {
   const [pickedDate, setPickedDate] = React.useState()
   let today = React.useRef()
   let showPlayDays = React.useRef([])
   let noOfDaysToShow = React.useRef(5)
+
+  React.useEffect(() => {
+    today.current = new Date()
+
+    if (showPlayDays.current.length === 0) {
+      for (let i = 0; i < noOfDaysToShow.current; i++) {
+        let date = new Date()
+        let nextDay = new Date(date)
+        nextDay.setDate(nextDay.getDate() + i)
+        showPlayDays.current = [...showPlayDays.current, { day: nextDay.toLocaleDateString(), dayName: nextDay.toLocaleDateString('pl-PL', { weekday: 'long' }), month: nextDay.toLocaleString('default', { month: 'long' }) }]
+      }
+    }
+    setPickedDate(today.current.toLocaleDateString())
+
+    // console.log(today.current, showPlayDays.current)
+
+  }, [])
+
+
+  if (movies.movies.length === 0) return <Loader />
+
 
 
   const dateToPlay = showPlayDays.current.map((item, id) => (
@@ -28,21 +53,13 @@ const ReservationPage = () => {
     </div>
   ))
 
-  React.useEffect(() => {
-    today.current = new Date()
+  let moviesToPlay = movies.movies.filter(items => items.id % 2 === pickedDate.split('.')[0] % 2)
 
-    for (let i = 0; i < noOfDaysToShow.current; i++) {
-      let date = new Date()
-      let nextDay = new Date(date)
-      nextDay.setDate(nextDay.getDate() + i)
-      showPlayDays.current = [...showPlayDays.current, { day: nextDay.toLocaleDateString(), dayName: nextDay.toLocaleDateString('pl-PL', { weekday: 'long' }), month: nextDay.toLocaleString('default', { month: 'long' }) }]
-    }
-
-    setPickedDate(today.current.toLocaleDateString())
-
-    // console.log(today.current, showPlayDays.current)
-
-  }, [])
+  moviesToPlay = moviesToPlay.map((item, id) => (
+    <div className="movie-to-play" key={id}>
+      <MovieReservationPreview data={item.attributes} />
+    </div>
+  ))
 
   return (
     <div className="reservation-page">
@@ -55,9 +72,22 @@ const ReservationPage = () => {
         </div>
       </div>
 
+      <div className="reservation-page-movies-that-day">
+        <h1 className="movie-preview-cont__h1">Filmy grane dnia: {pickedDate}</h1>
+        <div className="movies-reservation-list">
+          {moviesToPlay}
+        </div>
+      </div>
 
     </div>
   );
 }
 
-export default ReservationPage;
+const mapStateToProps = ({ movies }) => {
+  return {
+    movies
+  }
+}
+
+
+export default connect(mapStateToProps)(ReservationPage);
