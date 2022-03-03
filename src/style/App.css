@@ -492,3 +492,9 @@ div.movie-yt {
 .filter-btn {
   border: none;
 }
+
+.no-movies {
+  margin: 15vh 15%;
+  /* width: 70%; */
+  text-align: center;
+}

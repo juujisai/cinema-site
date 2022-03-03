@@ -1,12 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import Loader from './Loader'
-import { switchFilterVisibility } from '../redux/actions/moviesAction'
+import { switchFilterVisibility, filterData } from '../redux/actions/moviesAction'
 import { IoClose } from 'react-icons/io5'
 
 const videoPlayTime = ['12:00', '14:00', '16:00', '18:00', '20:00']
 
-const Filter = ({ movies, showCat, switchVisibility }) => {
+const Filter = ({ movies, showCat, switchVisibility, filterData }) => {
   const [category, setCategory] = React.useState('all')
   const [timeOfPlay, setTimeOfPlay] = React.useState('all')
   const [yearOfPremiere, setYearOfPremiere] = React.useState(0)
@@ -35,7 +35,8 @@ const Filter = ({ movies, showCat, switchVisibility }) => {
   ))
 
   const handleClick = () => {
-    console.log(category, timeOfPlay, yearOfPremiere, featured)
+    // console.log(category, timeOfPlay, yearOfPremiere, featured)
+    filterData(movies.movies, [category, timeOfPlay, yearOfPremiere, featured])
   }
 
   React.useEffect(() => {
@@ -117,7 +118,9 @@ const mapStateToProps = ({ movies }) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    switchVisibility: () => dispatch(switchFilterVisibility())
+    switchVisibility: () => dispatch(switchFilterVisibility()),
+    filterData: (data, filters) => dispatch(filterData(data, filters))
+
   }
 }
 
