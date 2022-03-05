@@ -11,11 +11,12 @@ import Footer from './layout/Footer';
 
 
 import { moviesReducer } from './redux/reducers/moviesReducer'
-
+import { reservationReducer } from './redux/reducers/reservationReducer';
 
 
 const rootReducer = combineReducers({
-  movies: moviesReducer
+  movies: moviesReducer,
+  reservation: reservationReducer
 })
 
 const store = createStore(

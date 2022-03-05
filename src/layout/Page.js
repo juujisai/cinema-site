@@ -9,7 +9,7 @@ import MoviePage from '../page/MoviePage.js'
 import { fetchMovieData } from '../redux/actions/moviesAction'
 import { connect } from 'react-redux'
 import CategoryPage from '../page/CategoryPage'
-
+import MovieReservationPage from '../page/MovieReservationPage';
 
 const Page = ({ fetchMovieDataFunction }) => {
   React.useEffect(() => {
@@ -25,9 +25,10 @@ const Page = ({ fetchMovieDataFunction }) => {
         <Route path='/movies' element={<MoviesPage />}></Route>
         <Route path={'/movies/:name'} element={<MoviePage />}></Route>
         <Route path={'/cat/:name'} element={<CategoryPage />}></Route>
+        <Route path={'/reserve/:name'} element={<MovieReservationPage />} ></Route>
         <Route path="*" element={<ErrorPage />}> </Route>
       </Routes>
-    </div>
+    </div >
   );
 }
 const mapStateToProps = ({ movies }) => {
