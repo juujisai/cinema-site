@@ -6,7 +6,7 @@ import Loader from '../components/Loader'
 
 
 const ReservationPage = ({ movies }) => {
-  const [pickedDate, setPickedDate] = React.useState()
+  const [pickedDate, setPickedDate] = React.useState(new Date().toLocaleDateString())
   let today = React.useRef()
   let showPlayDays = React.useRef([])
   let noOfDaysToShow = React.useRef(5)
@@ -22,7 +22,7 @@ const ReservationPage = ({ movies }) => {
         showPlayDays.current = [...showPlayDays.current, { day: nextDay.toLocaleDateString(), dayName: nextDay.toLocaleDateString('pl-PL', { weekday: 'long' }), month: nextDay.toLocaleString('default', { month: 'long' }) }]
       }
     }
-    setPickedDate(today.current.toLocaleDateString())
+    // setPickedDate(today.current.toLocaleDateString())
 
     // console.log(today.current, showPlayDays.current)
 
@@ -53,6 +53,8 @@ const ReservationPage = ({ movies }) => {
     </div>
   ))
 
+  console.log(movies.movies)
+  console.log(pickedDate)
   let moviesToPlay = movies.movies.filter(items => items.id % 2 === pickedDate.split('.')[0] % 2)
 
   moviesToPlay = moviesToPlay.map((item, id) => (
