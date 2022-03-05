@@ -53,9 +53,18 @@ const ReservationPage = ({ movies }) => {
     </div>
   ))
 
-  console.log(movies.movies)
-  console.log(pickedDate)
+
   let moviesToPlay = movies.movies.filter(items => items.id % 2 === pickedDate.split('.')[0] % 2)
+
+  const sorter = function (a, b) {
+    let x = a.attributes.timeOfPlay
+    let y = b.attributes.timeOfPlay
+    if (x === y)
+      return 0;
+    return x < y ? -1 : 1;
+  }
+
+  moviesToPlay.sort(sorter)
 
   moviesToPlay = moviesToPlay.map((item, id) => (
     <div className="movie-to-play" key={id}>

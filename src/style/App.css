@@ -559,3 +559,45 @@ div.movie-yt {
   transform: translate(-50%, -100%);
 
 }
+
+
+/* movie reservation preview */
+.movie-reservation-preview {
+  margin: 50px 10%;
+}
+
+.movie-reservation-preview-thumbnail {
+  width: 100%;
+}
+
+.movie-reservation-preview-thumbnail__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.preview-info-name {
+  margin: 10px 0;
+  padding-bottom: 10px;
+  border-bottom: 4px solid var(--mainBrown);
+  font-size: 1.25em;
+}
+
+.preview-info-author {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.preview-info-description__p {
+  margin-bottom: 10px;
+}
+
+.preview-info-description__a {
+  display: block;
+  margin-left: auto;
+  color: var(--mainBrown);
+  text-decoration: none;
+  text-align: right;
+}
