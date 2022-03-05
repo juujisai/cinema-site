@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 const videoPlayTime = ['12:00', '14:00', '16:00', '18:00', '20:00']
 const videoPlayTimeCode = ['m1', 'm2', 'm3', 'm4', 'm5']
 
-const MovieReservationPreview = ({ data }) => {
+const MovieReservationPreview = ({ data, pickedDate }) => {
   const { name, author, timeOfPlay, description, imageThumbnail } = data
 
   let namePath = name

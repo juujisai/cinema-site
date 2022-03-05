@@ -68,7 +68,7 @@ const ReservationPage = ({ movies }) => {
 
   moviesToPlay = moviesToPlay.map((item, id) => (
     <div className="movie-to-play" key={id}>
-      <MovieReservationPreview data={item.attributes} />
+      <MovieReservationPreview data={item.attributes} pickedDate={pickedDate} />
     </div>
   ))
 
