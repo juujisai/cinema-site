@@ -8,32 +8,34 @@ import Loader from '../components/Loader'
 const ReservationPage = ({ movies }) => {
   const [pickedDate, setPickedDate] = React.useState(new Date().toLocaleDateString())
   let today = React.useRef()
-  let showPlayDays = React.useRef([])
+  const [showPlayDays, setShowPlayDays] = React.useState([])
   let noOfDaysToShow = React.useRef(5)
 
   React.useEffect(() => {
     today.current = new Date()
+    let daysToShow = []
 
-    if (showPlayDays.current.length === 0) {
+    if (showPlayDays.length === 0) {
       for (let i = 0; i < noOfDaysToShow.current; i++) {
         let date = new Date()
         let nextDay = new Date(date)
         nextDay.setDate(nextDay.getDate() + i)
-        showPlayDays.current = [...showPlayDays.current, { day: nextDay.toLocaleDateString(), dayName: nextDay.toLocaleDateString('pl-PL', { weekday: 'long' }), month: nextDay.toLocaleString('default', { month: 'long' }) }]
+        daysToShow = [...daysToShow, { day: nextDay.toLocaleDateString(), dayName: nextDay.toLocaleDateString('pl-PL', { weekday: 'long' }), month: nextDay.toLocaleString('default', { month: 'long' }) }]
+        setShowPlayDays(daysToShow)
       }
     }
     // setPickedDate(today.current.toLocaleDateString())
 
     // console.log(today.current, showPlayDays.current)
 
-  }, [])
+  }, [showPlayDays])
 
 
   if (movies.movies.length === 0) return <Loader />
 
 
-
-  const dateToPlay = showPlayDays.current.map((item, id) => (
+  console.log(showPlayDays)
+  const dateToPlay = showPlayDays.map((item, id) => (
     <div className='reservation-single-day' key={id}
       onClick={() => setPickedDate(item.day)}
       style={item.day === pickedDate ? { backgroundColor: 'var(--lightBrown)' } : { backgroundColor: 'white' }}
