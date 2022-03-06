@@ -3,22 +3,25 @@ import { GET_RESERVATIONS_FOR_A_MOVIE_REQUEST, GET_RESERVATIONS_FOR_A_MOVIE_SUCC
 
 const reservationInitialState = {
   currentReservations: [],
+  loading: false,
+  errorMsg: '',
   pickedDate: ''
 }
 
 
 export const reservationReducer = (state = reservationInitialState, action) => {
   if (action.type === GET_RESERVATIONS_FOR_A_MOVIE_REQUEST) {
-    console.log('reservation request')
-    return { ...state }
+    console.log('get reservation request')
+    return { ...state, loading: action.payload.loading }
   }
   if (action.type === GET_RESERVATIONS_FOR_A_MOVIE_SUCCESS) {
-    console.log('reservation success')
-    return { ...state }
+    console.log('get reservation success')
+    let currentReservations = [...state.currentReservations, action.payload.reservation]
+    return { ...state, loading: action.payload.loading, currentReservations }
   }
   if (action.type === GET_RESERVATIONS_FOR_A_MOVIE_FAILURE) {
-    console.log('reservation failure')
-    return { ...state }
+    console.log('get reservation failure')
+    return { ...state, loading: action.payload.loading, errorMsg: action.payload.error }
   }
   if (action.type === SET_PICKED_DATE) {
     console.log(action.payload)

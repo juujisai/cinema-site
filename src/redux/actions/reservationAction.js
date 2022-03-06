@@ -35,7 +35,7 @@ export const getReservationsForAMovie = (data) => {
         console.log(dataToPush)
 
 
-        dispatch(getReservationsForAMovieSuccess(dataToPush))
+        dispatch(getReservationsForAMovieSuccess({ movieId: data, reservations: dataToPush }))
       })
       .catch(err => {
         dispatch(getReservationsForAMovieFailure(err))
