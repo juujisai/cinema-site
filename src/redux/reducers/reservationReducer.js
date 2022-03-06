@@ -1,8 +1,9 @@
-import { GET_RESERVATIONS_FOR_A_MOVIE_REQUEST, GET_RESERVATIONS_FOR_A_MOVIE_SUCCESS, GET_RESERVATIONS_FOR_A_MOVIE_FAILURE } from '../actions/reservationAction'
+import { GET_RESERVATIONS_FOR_A_MOVIE_REQUEST, GET_RESERVATIONS_FOR_A_MOVIE_SUCCESS, GET_RESERVATIONS_FOR_A_MOVIE_FAILURE, SET_PICKED_DATE } from '../actions/reservationAction'
 
 
 const reservationInitialState = {
-  currentReservations: []
+  currentReservations: [],
+  pickedDate: ''
 }
 
 
@@ -19,5 +20,14 @@ export const reservationReducer = (state = reservationInitialState, action) => {
     console.log('reservation failure')
     return { ...state }
   }
+  if (action.type === SET_PICKED_DATE) {
+    console.log(action.payload)
+    return { ...state, pickedDate: action.payload }
+  }
+
+
+
+
+
   return state
 }

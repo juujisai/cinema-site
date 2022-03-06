@@ -41,15 +41,13 @@ export const getReservationsForAMovie = (data) => {
         dispatch(getReservationsForAMovieFailure(err))
       })
   }
-
-
-
-
-
 }
 
+export const SET_PICKED_DATE = 'SET_PICKED_DATE'
 
-
+export const setPickedDate = (data) => {
+  return { type: SET_PICKED_DATE, payload: data }
+}
 
 
 

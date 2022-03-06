@@ -3,9 +3,9 @@ import { BsCalendar } from 'react-icons/bs'
 import { connect } from 'react-redux'
 import MovieReservationPreview from '../components/MovieReservationPreview';
 import Loader from '../components/Loader'
+import { setPickedDate } from '../redux/actions/reservationAction'
 
-
-const ReservationPage = ({ movies }) => {
+const ReservationPage = ({ movies, setPicked }) => {
   const [pickedDate, setPickedDate] = React.useState(new Date().toLocaleDateString())
   let today = React.useRef()
   const [showPlayDays, setShowPlayDays] = React.useState([])
@@ -16,6 +16,7 @@ const ReservationPage = ({ movies }) => {
     let daysToShow = []
 
     if (showPlayDays.length === 0) {
+      setPicked(new Date().toLocaleDateString())
       for (let i = 0; i < noOfDaysToShow.current; i++) {
         let date = new Date()
         let nextDay = new Date(date)
@@ -28,16 +29,16 @@ const ReservationPage = ({ movies }) => {
 
     // console.log(today.current, showPlayDays.current)
 
-  }, [showPlayDays])
+  }, [showPlayDays, setPicked])
 
 
   if (movies.movies.length === 0) return <Loader />
 
 
-  console.log(showPlayDays)
+  // console.log(showPlayDays)
   const dateToPlay = showPlayDays.map((item, id) => (
     <div className='reservation-single-day' key={id}
-      onClick={() => setPickedDate(item.day)}
+      onClick={() => { setPickedDate(item.day); setPicked(item.day) }}
       style={item.day === pickedDate ? { backgroundColor: 'var(--lightBrown)' } : { backgroundColor: 'white' }}
     >
       <span className="reservation-single-day-name reservation-single-day__span"
@@ -102,5 +103,10 @@ const mapStateToProps = ({ movies }) => {
   }
 }
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setPicked: (data) => dispatch(setPickedDate(data))
+  }
+}
 
-export default connect(mapStateToProps)(ReservationPage);
+export default connect(mapStateToProps, mapDispatchToProps)(ReservationPage);
