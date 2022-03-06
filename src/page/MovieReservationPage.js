@@ -24,8 +24,9 @@ const MovieReservationPage = ({ movies, reservation, getReservations }) => {
     // getReservations()
   }, [movie, movies.movies, param, getReservations])
 
-  if (movies.movies.length === 0 || reservation.loading || reservation.currentReservations.length === 0) return <Loader />
+  if (movies.movies.length === 0 || reservation.loading || reservation.currentReservations.length === 0 || movie === undefined) return <Loader />
 
+  console.log(movie)
   const movieReservations = reservation.currentReservations.find(item => item.movieId === movie.id).reservations
 
   // console.log(movieReservations)
