@@ -28,11 +28,11 @@ export const getReservationsForAMovie = (data) => {
 
     axios.get(a)
       .then(response => {
-        console.log('pobieram filmy')
+        // console.log('pobieram filmy')
         let dataToPush = response.data.data
-
-        dataToPush = dataToPush.filter(item => item.id === data)
-        console.log(dataToPush)
+        // console.log(dataToPush)
+        dataToPush = dataToPush.filter(item => item.attributes.movieId === `${data}`)
+        // console.log(dataToPush)
 
 
         dispatch(getReservationsForAMovieSuccess({ movieId: data, reservations: dataToPush }))
