@@ -7,9 +7,18 @@ import { cinemaSeats } from '../data/cinemaSeats'
 
 const MovieReservationPage = ({ movies, reservation, getReservations }) => {
   const param = useParams().name
-  // const [movieCurrentReservations, setMovieCurrentReservations] = React.useState([])
   const [movie, setMovie] = React.useState()
   const [seatsToBook, setSeatsToBook] = React.useState([])
+  const [name, setName] = React.useState('')
+  const [sndName, setSndName] = React.useState('')
+  const [phoneNo, setPhoneNo] = React.useState('')
+  const [validationResult, setValidationResult] = React.useState({
+    name: false,
+    sndName: false,
+    phoneNo: false,
+    result: false,
+  })
+
 
   React.useEffect(() => {
     if (movies.movies.length > 0 && movie === undefined) {
@@ -21,8 +30,7 @@ const MovieReservationPage = ({ movies, reservation, getReservations }) => {
     }
 
     // console.log('rendering movie reservation page')
-    // console.log(seatsToBook)
-    // getReservations()
+
   }, [movie, movies.movies, param, getReservations, seatsToBook])
 
   if (movies.movies.length === 0 || reservation.loading || reservation.currentReservations.length === 0 || movie === undefined) return <Loader />
@@ -68,14 +76,52 @@ const MovieReservationPage = ({ movies, reservation, getReservations }) => {
       <div
         className={`reservation-rows`}
         key={id}
+        data-row={String.fromCharCode(letterACharcode + id)}
       >
         {seatsButtons}
       </div>
     )
   })
 
+  const chosenSeatsToShow = seatsToBook.map((item, id) => (
+    <span className='chosen-seats-span' key={id}>{id !== 0 ? ' / ' : ' '}{item}</span>
+  ))
+
+  // functions
+
+  const validateForm = () => {
+    let nameX = false
+    let sndNameX = false
+    let phoneNoX = false
+    let resultX = false
+
+    if (name.length < 2) {
+      nameX = true
+    }
+    if (sndName.length < 2) {
+      sndNameX = true
+    }
+    if (`${phoneNo}`.length < 9) {
+      phoneNoX = true
+    }
+    if (nameX && sndNameX && phoneNoX) {
+      resultX = true
+    }
+    return {
+      name: nameX,
+      sndName: sndNameX,
+      phoneNo: phoneNoX,
+      result: resultX
+    }
+  }
+
+  const handleReservationClick = () => {
+    const result = validateForm()
+    setValidationResult(result)
 
 
+    console.log('wysyłam do api')
+  }
 
   return (
     <div className='movie-reservation-page'>
@@ -87,11 +133,39 @@ const MovieReservationPage = ({ movies, reservation, getReservations }) => {
       </div>
       <div className="reservation-data">
         <form className="reservation-data__form">
-          <div className="reservation-name"></div>
-          <div className="reservation-secondname"></div>
-          <div className="reservation-phonenumber"></div>
+          <div className="reservation-name">
+            <label htmlFor="reservation-name__input">
+              Imię:
+              <input type="text" id='reservation-name__input' value={name} onChange={(e) => setName(e.target.value)} />
+            </label>
+            {validationResult.name && <span className="error-msg">Imię musi zawierać minimum 2 znaki</span>}
+          </div>
+          <div className="reservation-secondname">
+            <label htmlFor="reservation-secondname__input">
+              Nazwisko:
+              <input type="text" id='reservation-secondname__input' value={sndName} onChange={(e) => setSndName(e.target.value)} />
+            </label>
+            {validationResult.sndName && <span className="error-msg">Nazwisko musi zawierać minimum 2 znaki</span>}
+          </div>
+          <div className="reservation-phonenumber">
+            <label htmlFor="reservation-phonenumber__input">
+              Numer telefonu:
+              <input type="number" id='reservation-phonenumber__input' value={phoneNo} onChange={(e) => {
+                let value;
+                phoneNo.length >= 9 ? value = phoneNo : value = e.target.value
+                setPhoneNo(value)
+              }} />
+            </label>
+            {validationResult.phoneNo && <span className="error-msg">Numer telefonu musi zawierać 9 cyfr</span>}
+          </div>
         </form>
-        <div className="reservation-chosenseats"></div>
+        {seatsToBook.length > 0 && <div className="reservation-chosenseats">
+          <h2 className='reservation-chosenseats__h2'>Wybrane miejsca:</h2>
+          {chosenSeatsToShow}
+        </div>}
+        <div className="page__button">
+          <button className="button main-button" onClick={handleReservationClick}>Zarezewuj bilet(y)</button>
+        </div>
       </div>
 
     </div>
