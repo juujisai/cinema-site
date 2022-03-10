@@ -25,7 +25,7 @@ export const fetchMovieData = () => {
     dispatch(fetchMovieDataRequest())
     axios.get(a)
       .then(response => {
-        console.log('pobieram filmy')
+        // console.log('pobieram filmy')
         dispatch(fetchMovieDataSuccess(response.data.data))
       })
       .catch(err => {

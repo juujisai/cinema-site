@@ -9,6 +9,7 @@ const MovieReservationPage = ({ movies, reservation, getReservations }) => {
   const param = useParams().name
   // const [movieCurrentReservations, setMovieCurrentReservations] = React.useState([])
   const [movie, setMovie] = React.useState()
+  const [seatsToBook, setSeatsToBook] = React.useState([])
 
   React.useEffect(() => {
     if (movies.movies.length > 0 && movie === undefined) {
@@ -19,14 +20,14 @@ const MovieReservationPage = ({ movies, reservation, getReservations }) => {
 
     }
 
-    console.log('rendering movie reservation page')
-
+    // console.log('rendering movie reservation page')
+    // console.log(seatsToBook)
     // getReservations()
-  }, [movie, movies.movies, param, getReservations])
+  }, [movie, movies.movies, param, getReservations, seatsToBook])
 
   if (movies.movies.length === 0 || reservation.loading || reservation.currentReservations.length === 0 || movie === undefined) return <Loader />
 
-  console.log(movie)
+  // console.log(movie)
   const movieReservations = reservation.currentReservations.find(item => item.movieId === movie.id).reservations
 
   // console.log(movieReservations)
@@ -39,10 +40,24 @@ const MovieReservationPage = ({ movies, reservation, getReservations }) => {
     let seatsButtons = []
 
     for (let i = 1; i <= noSeats; i++) {
+      const seatName = `${String.fromCharCode(letterACharcode + id)}-${i}`
+
       seatsButtons = [...seatsButtons,
       <button
         key={i}
-        onClick={() => console.log(`Miejsce ${String.fromCharCode(letterACharcode + id)}-${i}`)}
+        onClick={() => {
+          if (!seatsToBook.includes(seatName)) {
+            setSeatsToBook([...seatsToBook, seatName])
+            // console.log('new')
+          } else {
+            setSeatsToBook(seatsToBook.filter(item => item !== seatName))
+            // console.log('not new')
+          }
+        }}
+
+        className={`ticket-${seatsToBook.includes(seatName) ? `active` : `not-active`}`}
+
+        disabled={movieReservations.filter(item => item.attributes.seats.includes(`${String.fromCharCode(letterACharcode + id)}-${i}`)).length > 0 ? true : false}
       >
         {i}
       </button>
