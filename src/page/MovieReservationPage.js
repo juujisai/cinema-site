@@ -85,7 +85,14 @@ const MovieReservationPage = ({ movies, reservation, getReservations }) => {
         <h1 className="reservation-seats__h1">Wybierz miejsce/a</h1>
         {seats}
       </div>
-
+      <div className="reservation-data">
+        <form className="reservation-data__form">
+          <div className="reservation-name"></div>
+          <div className="reservation-secondname"></div>
+          <div className="reservation-phonenumber"></div>
+        </form>
+        <div className="reservation-chosenseats"></div>
+      </div>
 
     </div>
   );
