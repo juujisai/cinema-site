@@ -63,7 +63,7 @@ const MovieReservationPage = ({ movies, reservation, getReservations }) => {
           }
         }}
 
-        className={`ticket-${seatsToBook.includes(seatName) ? `active` : `not-active`}`}
+        className={`ticket-seat ticket-${seatsToBook.includes(seatName) ? `active` : `not-active`}`}
 
         disabled={movieReservations.filter(item => item.attributes.seats.includes(`${String.fromCharCode(letterACharcode + id)}-${i}`)).length > 0 ? true : false}
       >
@@ -131,21 +131,34 @@ const MovieReservationPage = ({ movies, reservation, getReservations }) => {
         <h1 className="reservation-seats__h1">Wybierz miejsce/a</h1>
         {seats}
       </div>
+
+
+      <div className="reservation-legend">
+        <div className="reservation-legend__div"><button className='ticket-seat' >X</button><span className="legend-desc">miejsce</span></div>
+        <div className="reservation-legend__div"><button className='ticket-seat ticket-active' >X</button><span className="legend-desc">wybrane miejsce</span></div>
+        <div className="reservation-legend__div"><button className='ticket-seat' disabled>X</button><span className="legend-desc">miejsce razerwowane</span></div>
+      </div>
+
+
       <div className="reservation-data">
+        {seatsToBook.length > 0 && <div className="reservation-chosenseats">
+          <h2 className='reservation-chosenseats__h2'>Wybrane miejsca:</h2>
+          {chosenSeatsToShow}
+        </div>}
         <form className="reservation-data__form">
           <div className="reservation-name">
             <label htmlFor="reservation-name__input">
               Imię:
               <input type="text" id='reservation-name__input' value={name} onChange={(e) => setName(e.target.value)} />
             </label>
-            {validationResult.name && <span className="error-msg">Imię musi zawierać minimum 2 znaki</span>}
+            <span className={`error-msg ${validationResult.name ? 'error-show' : null}`}>Imię musi zawierać minimum 2 znaki</span>
           </div>
           <div className="reservation-secondname">
             <label htmlFor="reservation-secondname__input">
               Nazwisko:
               <input type="text" id='reservation-secondname__input' value={sndName} onChange={(e) => setSndName(e.target.value)} />
             </label>
-            {validationResult.sndName && <span className="error-msg">Nazwisko musi zawierać minimum 2 znaki</span>}
+            <span className={`error-msg ${validationResult.sndName ? 'error-show' : null}`}>Nazwisko musi zawierać minimum 2 znaki</span>
           </div>
           <div className="reservation-phonenumber">
             <label htmlFor="reservation-phonenumber__input">
@@ -156,13 +169,10 @@ const MovieReservationPage = ({ movies, reservation, getReservations }) => {
                 setPhoneNo(value)
               }} />
             </label>
-            {validationResult.phoneNo && <span className="error-msg">Numer telefonu musi zawierać 9 cyfr</span>}
+            <span className={`error-msg ${validationResult.phoneNo ? 'error-show' : null}`}>Numer telefonu musi zawierać 9 cyfr</span>
           </div>
         </form>
-        {seatsToBook.length > 0 && <div className="reservation-chosenseats">
-          <h2 className='reservation-chosenseats__h2'>Wybrane miejsca:</h2>
-          {chosenSeatsToShow}
-        </div>}
+
         <div className="page__button">
           <button className="button main-button" onClick={handleReservationClick}>Zarezewuj bilet(y)</button>
         </div>

@@ -601,3 +601,118 @@ div.movie-yt {
   text-decoration: none;
   text-align: right;
 }
+
+
+
+/* reservation page */
+.movie-reservation-page__h1 {
+  padding: 10px;
+  font-size: 1.25em;
+  background-color: var(--mainBrown);
+  color: white;
+}
+
+.movie-reservation-page__h1--name {
+  background-color: #fff;
+  color: var(--mainBrown);
+  margin-bottom: 20px;
+}
+
+.reservation-seats__h1,
+.reservation-chosenseats__h2 {
+  font-size: 1.1em;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.reservation-chosenseats__h2 {
+  margin: 20px 0 10px;
+}
+
+.reservation-rows {
+  margin: 0 2.5%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 5px;
+}
+
+.reservation-rows::before {
+  position: absolute;
+  content: attr(data-row);
+  left: 0;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.ticket-seat {
+  margin: 1px;
+  width: 17px;
+  height: 17px;
+  border: none;
+  background-color: #fff;
+  -webkit-box-shadow: 0px 2px 4px 0px rgba(66, 68, 90, 1);
+  -moz-box-shadow: 0px 2px 4px 0px rgba(66, 68, 90, 1);
+  box-shadow: 0px 2px 4px 0px rgba(66, 68, 90, 1);
+  transition: .3s;
+}
+
+.ticket-seat:disabled {
+  background-color: #999;
+  color: white;
+}
+
+.ticket-active {
+  background-color: var(--mainBrown);
+  color: white;
+
+}
+
+.reservation-chosenseats {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.reservation-data__form {
+  margin: 20px 10% 0;
+}
+
+.reservation-data__form input {
+  display: block;
+  margin: 10px 0 5px;
+  padding: 5px;
+  width: 100%;
+  overflow: hidden;
+
+}
+
+.reservation-data__form div {
+  overflow: hidden;
+}
+
+.error-msg {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 0.75em;
+  color: #f00;
+  transform: translate(0, 200%);
+  transition: .3s;
+}
+
+.error-show {
+  transform: translate(0, 0%);
+
+}
+
+.reservation-legend {
+  margin: 15px 10%;
+}
+
+.reservation-legend__div {
+  margin: 10px 0;
+}
+
+.legend-desc {
+  margin-left: 20px;
+}
