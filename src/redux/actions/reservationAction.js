@@ -83,7 +83,7 @@ export const postReservationSummary = (data) => {
     let dataToPost = {
       "data": {
         date: data.date,
-        Name: `${data.name} ${data.sndName}`,
+        name: `${data.name} ${data.sndName}`,
         movie: data.movie.attributes.name,
         time: data.movie.attributes.timeOfPlay,
         seats: `${data.seatsToBook.join(' ')}`,
