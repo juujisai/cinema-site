@@ -6,6 +6,8 @@ import { getReservationsForAMovie, postReservationSummary } from '../redux/actio
 import { cinemaSeats } from '../data/cinemaSeats'
 import ReservationSummary from '../components/ReservationSummary'
 import { v4 as uuidv4 } from 'uuid';
+import { useNavigate } from 'react-router-dom'
+
 
 const MovieReservationPage = ({ movies, reservation, getReservations, postReservations }) => {
   const param = useParams().name
@@ -22,8 +24,15 @@ const MovieReservationPage = ({ movies, reservation, getReservations, postReserv
   })
   const [uuid, setUuid] = React.useState('')
   // const [reservationValidated, setReservationValidated] = React.useState(reservation.showReservationSummary)
+  let navigate = useNavigate();
 
   React.useEffect(() => {
+    if (reservation.pickedDate === '') {
+      console.log('brak wybranej daty - przekierowuje do reperturaru')
+      return navigate("/rep")
+
+    }
+
     if (movies.movies.length > 0 && movie === undefined) {
       let movieCont = movies.movies.filter(item => param === [...item.attributes.name].map(item => item === ' ' ? item = '-' : item).filter(item => item !== "'").join('').toLowerCase())[0]
       setMovie(movieCont)
@@ -37,7 +46,7 @@ const MovieReservationPage = ({ movies, reservation, getReservations, postReserv
   }
 
 
-    , [movie, movies.movies, param, getReservations, seatsToBook])
+    , [movie, movies.movies, param, getReservations, seatsToBook, navigate, reservation.pickedDate])
 
   if (movies.movies.length === 0 || reservation.loading || reservation.currentReservations.length === 0 || movie === undefined) return <Loader />
 
@@ -130,11 +139,12 @@ const MovieReservationPage = ({ movies, reservation, getReservations, postReserv
 
 
     if (!result.result) {
-      setUuid(uuidv4())
-      postReservations()
+      let id = uuidv4()
+      setUuid(id)
+      postReservations({ name, sndName, phoneNo, id, seatsToBook, date: reservation.pickedDate, movie })
 
 
-      console.log('podłącz wynik do api - do zrobienia')
+      // console.log('podłącz wynik do api - do zrobienia')
     }
 
   }
@@ -212,7 +222,7 @@ const mapStateToProps = ({ movies, reservation }) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getReservations: (data) => dispatch(getReservationsForAMovie(data)),
-    postReservations: () => dispatch(postReservationSummary())
+    postReservations: (data) => dispatch(postReservationSummary(data))
   }
 }
 

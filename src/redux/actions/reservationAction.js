@@ -74,11 +74,11 @@ export const postReservationSummarySuccess = () => {
 export const postReservationSummaryFailure = (error) => {
   return { type: POST_RESERVATION_SUMMARY_FAILURE, payload: error }
 }
-export const postReservationSummary = () => {
+export const postReservationSummary = (data) => {
   return (dispatch) => {
     dispatch(postReservationSummaryRequest())
 
-
+    console.log(data)
     // post
     dispatch(postReservationSummarySuccess())
 

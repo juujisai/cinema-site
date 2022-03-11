@@ -9,13 +9,13 @@ const ReservationSummary = ({ reservation, name, sndName, phoneNo, seatsToBook, 
     <span className='chosen-seats-span' key={id}>{id !== 0 ? ' / ' : ' '}{item}</span>
   ))
 
+
   if (reservation.postLoading) return (
     <div className="reservation-summary">
       <h3 className="reservation-summary__h3">Podsumowanie rezerwacji:</h3>
       <Loader />
     </div>
   )
-
 
 
   return (
