@@ -1,11 +1,14 @@
-import { GET_RESERVATIONS_FOR_A_MOVIE_REQUEST, GET_RESERVATIONS_FOR_A_MOVIE_SUCCESS, GET_RESERVATIONS_FOR_A_MOVIE_FAILURE, SET_PICKED_DATE } from '../actions/reservationAction'
+import { GET_RESERVATIONS_FOR_A_MOVIE_REQUEST, GET_RESERVATIONS_FOR_A_MOVIE_SUCCESS, GET_RESERVATIONS_FOR_A_MOVIE_FAILURE, SET_PICKED_DATE, SHOW_RESERVATION_SUMMARY, CLOSE_RESERVATION_SUMMARY, POST_RESERVATION_SUMMARY_FAILURE, POST_RESERVATION_SUMMARY_SUCCESS, POST_RESERVATION_SUMMARY_REQUEST } from '../actions/reservationAction'
 
 
 const reservationInitialState = {
   currentReservations: [],
   loading: false,
   errorMsg: '',
-  pickedDate: ''
+  pickedDate: '',
+  showReservationSummary: false,
+  postLoading: false,
+  postErrorMsg: ''
 }
 
 
@@ -27,7 +30,21 @@ export const reservationReducer = (state = reservationInitialState, action) => {
     console.log(action.payload)
     return { ...state, pickedDate: action.payload }
   }
-
+  if (action.type === SHOW_RESERVATION_SUMMARY) {
+    return { ...state, showReservationSummary: true }
+  }
+  if (action.type === CLOSE_RESERVATION_SUMMARY) {
+    return { ...state, showReservationSummary: false }
+  }
+  if (action.type === POST_RESERVATION_SUMMARY_REQUEST) {
+    return { ...state, postLoading: true }
+  }
+  if (action.type === POST_RESERVATION_SUMMARY_SUCCESS) {
+    return { ...state, postLoading: false, showReservationSummary: true }
+  }
+  if (action.type === POST_RESERVATION_SUMMARY_FAILURE) {
+    return { ...state, postLoading: false, postErrorMs: action.payload }
+  }
 
 
 

@@ -50,4 +50,39 @@ export const setPickedDate = (data) => {
 }
 
 
+export const SHOW_RESERVATION_SUMMARY = 'SHOW_RESERVATION_SUMMARY'
+export const CLOSE_RESERVATION_SUMMARY = 'CLOSE_RESERVATION_SUMMARY'
 
+export const showReservationSummary = () => {
+  return { type: SHOW_RESERVATION_SUMMARY }
+}
+
+export const closeReservationSummary = () => {
+  return { type: CLOSE_RESERVATION_SUMMARY }
+}
+
+export const POST_RESERVATION_SUMMARY_REQUEST = 'POST_RESERVATION_SUMMARY_REQUEST'
+export const POST_RESERVATION_SUMMARY_SUCCESS = 'POST_RESERVATION_SUMMARY_SUCCESS'
+export const POST_RESERVATION_SUMMARY_FAILURE = 'POST_RESERVATION_SUMMARY_FAILURE'
+
+export const postReservationSummaryRequest = () => {
+  return { type: POST_RESERVATION_SUMMARY_REQUEST }
+}
+export const postReservationSummarySuccess = () => {
+  return { type: POST_RESERVATION_SUMMARY_SUCCESS }
+}
+export const postReservationSummaryFailure = (error) => {
+  return { type: POST_RESERVATION_SUMMARY_FAILURE, payload: error }
+}
+export const postReservationSummary = () => {
+  return (dispatch) => {
+    dispatch(postReservationSummaryRequest())
+
+
+    // post
+    dispatch(postReservationSummarySuccess())
+
+    // post error
+    // dispatch(postReservationSummaryFailure)
+  }
+}

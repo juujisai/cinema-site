@@ -2,10 +2,12 @@ import React from 'react';
 import { useParams } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Loader from '../components/Loader'
-import { getReservationsForAMovie } from '../redux/actions/reservationAction'
+import { getReservationsForAMovie, postReservationSummary } from '../redux/actions/reservationAction'
 import { cinemaSeats } from '../data/cinemaSeats'
+import ReservationSummary from '../components/ReservationSummary'
+import { v4 as uuidv4 } from 'uuid';
 
-const MovieReservationPage = ({ movies, reservation, getReservations }) => {
+const MovieReservationPage = ({ movies, reservation, getReservations, postReservations }) => {
   const param = useParams().name
   const [movie, setMovie] = React.useState()
   const [seatsToBook, setSeatsToBook] = React.useState([])
@@ -18,7 +20,8 @@ const MovieReservationPage = ({ movies, reservation, getReservations }) => {
     phoneNo: false,
     result: false,
   })
-
+  const [uuid, setUuid] = React.useState('')
+  // const [reservationValidated, setReservationValidated] = React.useState(reservation.showReservationSummary)
 
   React.useEffect(() => {
     if (movies.movies.length > 0 && movie === undefined) {
@@ -31,7 +34,10 @@ const MovieReservationPage = ({ movies, reservation, getReservations }) => {
 
     // console.log('rendering movie reservation page')
 
-  }, [movie, movies.movies, param, getReservations, seatsToBook])
+  }
+
+
+    , [movie, movies.movies, param, getReservations, seatsToBook])
 
   if (movies.movies.length === 0 || reservation.loading || reservation.currentReservations.length === 0 || movie === undefined) return <Loader />
 
@@ -121,6 +127,16 @@ const MovieReservationPage = ({ movies, reservation, getReservations }) => {
 
 
     console.log('wysyłam do api')
+
+
+    if (!result.result) {
+      setUuid(uuidv4())
+      postReservations()
+
+
+      console.log('podłącz wynik do api - do zrobienia')
+    }
+
   }
 
   return (
@@ -173,11 +189,18 @@ const MovieReservationPage = ({ movies, reservation, getReservations }) => {
           </div>
         </form>
 
-        <div className="page__button">
+        {seatsToBook.length !== 0 && <div className="page__button">
           <button className="button main-button" onClick={handleReservationClick}>Zarezewuj bilet(y)</button>
-        </div>
+        </div>}
       </div>
-
+      {reservation.showReservationSummary &&
+        <ReservationSummary
+          name={name}
+          sndName={sndName}
+          phoneNo={phoneNo}
+          seatsToBook={seatsToBook}
+          idOfReservation={uuid}
+        />}
     </div>
   );
 }
@@ -188,7 +211,8 @@ const mapStateToProps = ({ movies, reservation }) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getReservations: (data) => dispatch(getReservationsForAMovie(data))
+    getReservations: (data) => dispatch(getReservationsForAMovie(data)),
+    postReservations: () => dispatch(postReservationSummary())
   }
 }
 

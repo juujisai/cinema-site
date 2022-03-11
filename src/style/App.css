@@ -716,3 +716,36 @@ div.movie-yt {
 .legend-desc {
   margin-left: 20px;
 }
+
+/* reservation summary */
+
+.reservation-summary {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #fff;
+  overflow: hidden;
+}
+
+.reservation-summary__h3 {
+  margin: 25px 10%;
+  text-align: center;
+}
+
+.reservation-summary-cont {
+  margin: 50px 10%;
+}
+
+.reservation-summary-cont__span {
+  display: block;
+}
+
+.reservation-summary-cont__h4 {
+  margin-bottom: 5px;
+}
+
+.reservation-summary-cont__div {
+  margin-bottom: 25px;
+}
