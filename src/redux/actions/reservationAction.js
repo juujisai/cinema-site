@@ -93,7 +93,7 @@ export const postReservationSummary = (data) => {
       }
     }
 
-    console.log(dataToPost)
+    // console.log(dataToPost)
     // dataToPost = JSON.stringify(dataToPost)
 
     // const controls = {
@@ -103,8 +103,15 @@ export const postReservationSummary = (data) => {
     // }
 
     axios.post(a, dataToPost)
-      .then(response => { console.log(response); dispatch(postReservationSummarySuccess()); return response.data.token })
-      .catch(error => { console.log(error.response.data); dispatch(postReservationSummaryFailure(error)) }
+      .then(response => {
+        // console.log(response); 
+        dispatch(postReservationSummarySuccess());
+        return response.data.token
+      })
+      .catch(error => {
+        // console.log(error.response.data); 
+        dispatch(postReservationSummaryFailure(error))
+      }
       )
 
     // post error

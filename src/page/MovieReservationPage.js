@@ -51,9 +51,10 @@ const MovieReservationPage = ({ movies, reservation, getReservations, postReserv
   if (movies.movies.length === 0 || reservation.loading || reservation.currentReservations.length === 0 || movie === undefined) return <Loader />
 
   // console.log(movie)
-  const movieReservations = reservation.currentReservations.find(item => item.movieId === movie.id).reservations
+  console.log(reservation.currentReservations)
+  const movieReservations = reservation.currentReservations.find(item => item.movieId === movie.id).reservations.filter(item => item.attributes.date === reservation.pickedDate)
 
-  // console.log(movieReservations)
+  console.log(movieReservations)
 
   // get id of letter A in charcode so i can use letters while getting row numbers after clicking a seat
   const letterACharcode = 65
@@ -80,7 +81,11 @@ const MovieReservationPage = ({ movies, reservation, getReservations, postReserv
 
         className={`ticket-seat ticket-${seatsToBook.includes(seatName) ? `active` : `not-active`}`}
 
-        disabled={movieReservations.filter(item => item.attributes.seats.includes(`${String.fromCharCode(letterACharcode + id)}-${i}`)).length > 0 ? true : false}
+        disabled={movieReservations.filter(item => {
+          return item.attributes.seats.split(' ').includes(`${String.fromCharCode(letterACharcode + id)}-${i}`)
+        }
+
+        ).length > 0 ? true : false}
       >
         {i}
       </button>
@@ -142,7 +147,7 @@ const MovieReservationPage = ({ movies, reservation, getReservations, postReserv
       let id = uuidv4()
       setUuid(id)
       postReservations({ name, sndName, phoneNo, id, seatsToBook, date: reservation.pickedDate, movie })
-
+      getReservations(movie.id)
 
       // console.log('podłącz wynik do api - do zrobienia')
     }
