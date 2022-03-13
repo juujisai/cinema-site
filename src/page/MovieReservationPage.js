@@ -23,16 +23,18 @@ const MovieReservationPage = ({ movies, reservation, getReservations, postReserv
     result: false,
   })
   const [uuid, setUuid] = React.useState('')
-  // const [reservationValidated, setReservationValidated] = React.useState(reservation.showReservationSummary)
   let navigate = useNavigate();
 
+
   React.useEffect(() => {
+    // return to site where you can pick data if you happen to be in a reservation page without chosen date
     if (reservation.pickedDate === '') {
       console.log('brak wybranej daty - przekierowuje do reperturaru')
       return navigate("/rep")
 
     }
 
+    // 
     if (movies.movies.length > 0 && movie === undefined) {
       let movieCont = movies.movies.filter(item => param === [...item.attributes.name].map(item => item === ' ' ? item = '-' : item).filter(item => item !== "'").join('').toLowerCase())[0]
       setMovie(movieCont)
@@ -46,15 +48,14 @@ const MovieReservationPage = ({ movies, reservation, getReservations, postReserv
   }
 
 
-    , [movie, movies.movies, param, getReservations, seatsToBook, navigate, reservation.pickedDate])
+    , [movie, movies.movies, param, getReservations, seatsToBook, navigate, reservation.pickedDate, reservation.currentReservations])
 
   if (movies.movies.length === 0 || reservation.loading || reservation.currentReservations.length === 0 || movie === undefined) return <Loader />
 
-  // console.log(movie)
-  console.log(reservation.currentReservations)
-  const movieReservations = reservation.currentReservations.find(item => item.movieId === movie.id).reservations.filter(item => item.attributes.date === reservation.pickedDate)
 
-  console.log(movieReservations)
+  let movieReservations = []
+
+  movieReservations = reservation.currentReservations.find(item => item.movieId === movie.id).reservations.filter(item => item.attributes.date === reservation.pickedDate)
 
   // get id of letter A in charcode so i can use letters while getting row numbers after clicking a seat
   const letterACharcode = 65
@@ -62,7 +63,6 @@ const MovieReservationPage = ({ movies, reservation, getReservations, postReserv
   const seats = cinemaSeats.map((item, id) => {
     let noSeats = item.rowSeats
     let seatsButtons = []
-
     for (let i = 1; i <= noSeats; i++) {
       const seatName = `${String.fromCharCode(letterACharcode + id)}-${i}`
 
@@ -81,7 +81,7 @@ const MovieReservationPage = ({ movies, reservation, getReservations, postReserv
 
         className={`ticket-seat ticket-${seatsToBook.includes(seatName) ? `active` : `not-active`}`}
 
-        disabled={movieReservations.filter(item => {
+        disabled={movieReservations.filter((item) => {
           return item.attributes.seats.split(' ').includes(`${String.fromCharCode(letterACharcode + id)}-${i}`)
         }
 
