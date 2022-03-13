@@ -5,6 +5,8 @@ import Loader from '../components/Loader'
 import { Link } from 'react-router-dom'
 
 const ReservationSummary = ({ reservation, name, sndName, phoneNo, seatsToBook, idOfReservation, close }) => {
+  let idRef = React.useRef('')
+
   const chosenSeatsToShow = seatsToBook.map((item, id) => (
     <span className='chosen-seats-span' key={id}>{id !== 0 ? ' / ' : ' '}{item}</span>
   ))
@@ -37,9 +39,15 @@ const ReservationSummary = ({ reservation, name, sndName, phoneNo, seatsToBook, 
           <span className="reservation-summary-cont__span">{phoneNo}</span>
         </div>
         <div className="reservation-summary-cont__div">
-          <h4 className="reservation-summary-cont__h4">Id rezerwacji:</h4>
-          <span className="reservation-summary-cont__span">{idOfReservation}</span>
-          <p className="reservation-summary-cont__p" style={{ marginTop: '10px' }}>Zachowaj ID do sprawdzenia rezerwacji</p>
+          <h4 className="reservation-summary-cont__h4" >Id rezerwacji:</h4>
+          <span className="reservation-summary-cont__span" ref={idRef}>{idOfReservation}</span>
+          <p className="reservation-summary-cont__p" style={{ marginTop: '10px' }}>Zachowaj ID do sprawdzenia rezerwacji
+            <button className="reservation-summary-cont__button" onClick={() => {
+              let field = idRef.current
+              window.getSelection().selectAllChildren(field)
+              document.execCommand('copy')
+              alert('dodano do schowka')
+            }}>Dodaj id do schowka</button></p>
         </div>
         <div className="page__button">
           <Link to="/" className="button main-button" onClick={() => close()}>Strona główna</Link>

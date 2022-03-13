@@ -54,15 +54,17 @@ const MovieReservationPage = ({ movies, reservation, getReservations, postReserv
 
 
   let movieReservations = []
-
+  // filter items that id match reservation page id and selected date
   movieReservations = reservation.currentReservations.find(item => item.movieId === movie.id).reservations.filter(item => item.attributes.date === reservation.pickedDate)
 
   // get id of letter A in charcode so i can use letters while getting row numbers after clicking a seat
   const letterACharcode = 65
 
+  // create rows
   const seats = cinemaSeats.map((item, id) => {
     let noSeats = item.rowSeats
     let seatsButtons = []
+    // create seats for rows
     for (let i = 1; i <= noSeats; i++) {
       const seatName = `${String.fromCharCode(letterACharcode + id)}-${i}`
 
@@ -103,6 +105,7 @@ const MovieReservationPage = ({ movies, reservation, getReservations, postReserv
     )
   })
 
+  // show which seats are selected
   const chosenSeatsToShow = seatsToBook.map((item, id) => (
     <span className='chosen-seats-span' key={id}>{id !== 0 ? ' / ' : ' '}{item}</span>
   ))
@@ -140,16 +143,12 @@ const MovieReservationPage = ({ movies, reservation, getReservations, postReserv
     setValidationResult(result)
 
 
-    console.log('wysyłam do api')
-
-
+    // send only when validation is passed
     if (!result.result) {
       let id = uuidv4()
       setUuid(id)
       postReservations({ name, sndName, phoneNo, id, seatsToBook, date: reservation.pickedDate, movie })
       getReservations(movie.id)
-
-      // console.log('podłącz wynik do api - do zrobienia')
     }
 
   }

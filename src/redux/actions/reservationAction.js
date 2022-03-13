@@ -30,10 +30,7 @@ export const getReservationsForAMovie = (data) => {
       .then(response => {
         // console.log('pobieram filmy')
         let dataToPush = response.data.data
-        console.log(dataToPush)
         dataToPush = dataToPush.filter(item => item.attributes.movieId === `${data}`)
-        // console.log(dataToPush)
-
 
         dispatch(getReservationsForAMovieSuccess({ movieId: data, reservations: dataToPush }))
       })
@@ -93,15 +90,6 @@ export const postReservationSummary = (data) => {
       }
     }
 
-    // console.log(dataToPost)
-    // dataToPost = JSON.stringify(dataToPost)
-
-    // const controls = {
-    //   headers: {
-    //     'Content-Type': 'text/plain'
-    //   },
-    // }
-
     axios.post(a, dataToPost)
       .then(response => {
         // console.log(response); 
@@ -114,11 +102,5 @@ export const postReservationSummary = (data) => {
       }
       )
 
-    // post error
-    // dispatch(postReservationSummaryFailure)
   }
 }
-
-
-// //////////////////////////////////////////////////////////////////////////////////////
-// naprawić odświeżanie api po wyświetleniu, błąd z includes dodaje więcej miejsc zarezerwowanych niż powinno
