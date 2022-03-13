@@ -749,3 +749,13 @@ div.movie-yt {
 .reservation-summary-cont__div {
   margin-bottom: 25px;
 }
+
+.reservation-summary-cont__button {
+  margin-left: 15px;
+  border: none;
+  background-color: transparent;
+  text-transform: lowercase;
+  font-size: 1em;
+  color: var(--mainBrown);
+  text-decoration: underline
+}
