@@ -104,3 +104,35 @@ export const postReservationSummary = (data) => {
 
   }
 }
+
+export const GET_RESERVATION_DATA_FROM_ID_REQUEST = 'GET_RESERVATION_DATA_FROM_ID_REQUEST'
+export const GET_RESERVATION_DATA_FROM_ID_SUCCESS = 'GET_RESERVATION_DATA_FROM_ID_SUCCESS'
+export const GET_RESERVATION_DATA_FROM_ID_FAILURE = 'GET_RESERVATION_DATA_FROM_ID_FAILURE'
+
+export const getReservationDataFromIdRequest = () => {
+  return { type: GET_RESERVATION_DATA_FROM_ID_REQUEST }
+}
+export const getReservationDataFromIdSuccess = (data) => {
+  return { type: GET_RESERVATION_DATA_FROM_ID_SUCCESS, payload: data }
+}
+export const getReservationDataFromIdFailure = () => {
+  return { type: GET_RESERVATION_DATA_FROM_ID_FAILURE }
+}
+
+
+export const getReservationDataFromId = (data) => {
+  return (dispatch) => {
+    dispatch(getReservationDataFromIdRequest())
+
+    axios.get(a)
+      .then(response => {
+        let res = response.data.data
+        res = res.filter(item => item.attributes.idOfReservation === data)
+        dispatch(getReservationDataFromIdSuccess(res))
+      })
+      .catch(error => {
+        dispatch(getReservationDataFromIdFailure(error))
+      })
+
+  }
+}

@@ -10,6 +10,7 @@ import { fetchMovieData } from '../redux/actions/moviesAction'
 import { connect } from 'react-redux'
 import CategoryPage from '../page/CategoryPage'
 import MovieReservationPage from '../page/MovieReservationPage';
+import CheckReservation from '../page/CheckReservation';
 
 const Page = ({ fetchMovieDataFunction }) => {
   React.useEffect(() => {
@@ -26,6 +27,7 @@ const Page = ({ fetchMovieDataFunction }) => {
         <Route path={'/movies/:name'} element={<MoviePage />}></Route>
         <Route path={'/cat/:name'} element={<CategoryPage />}></Route>
         <Route path={'/reserve/:name'} element={<MovieReservationPage />} ></Route>
+        <Route path={'/checkreservation/:name'} element={<CheckReservation />} ></Route>
         <Route path="*" element={<ErrorPage />}> </Route>
       </Routes>
     </div >

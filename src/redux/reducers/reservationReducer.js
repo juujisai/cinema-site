@@ -1,4 +1,4 @@
-import { GET_RESERVATIONS_FOR_A_MOVIE_REQUEST, GET_RESERVATIONS_FOR_A_MOVIE_SUCCESS, GET_RESERVATIONS_FOR_A_MOVIE_FAILURE, SET_PICKED_DATE, SHOW_RESERVATION_SUMMARY, CLOSE_RESERVATION_SUMMARY, POST_RESERVATION_SUMMARY_FAILURE, POST_RESERVATION_SUMMARY_SUCCESS, POST_RESERVATION_SUMMARY_REQUEST } from '../actions/reservationAction'
+import { GET_RESERVATIONS_FOR_A_MOVIE_REQUEST, GET_RESERVATIONS_FOR_A_MOVIE_SUCCESS, GET_RESERVATIONS_FOR_A_MOVIE_FAILURE, SET_PICKED_DATE, SHOW_RESERVATION_SUMMARY, CLOSE_RESERVATION_SUMMARY, POST_RESERVATION_SUMMARY_FAILURE, POST_RESERVATION_SUMMARY_SUCCESS, POST_RESERVATION_SUMMARY_REQUEST, GET_RESERVATION_DATA_FROM_ID_FAILURE, GET_RESERVATION_DATA_FROM_ID_REQUEST, GET_RESERVATION_DATA_FROM_ID_SUCCESS } from '../actions/reservationAction'
 
 
 const reservationInitialState = {
@@ -8,7 +8,10 @@ const reservationInitialState = {
   pickedDate: '',
   showReservationSummary: false,
   postLoading: false,
-  postErrorMsg: ''
+  postErrorMsg: '',
+  reservationDataById: [],
+  reservationDataByIdLoading: false,
+  reservationDataByIdError: ''
 }
 
 
@@ -48,9 +51,15 @@ export const reservationReducer = (state = reservationInitialState, action) => {
   if (action.type === POST_RESERVATION_SUMMARY_FAILURE) {
     return { ...state, postLoading: false, postErrorMs: action.payload }
   }
-
-
-
+  if (action.type === GET_RESERVATION_DATA_FROM_ID_REQUEST) {
+    return { ...state, reservationDataByIdLoading: true }
+  }
+  if (action.type === GET_RESERVATION_DATA_FROM_ID_SUCCESS) {
+    return { ...state, reservationDataByIdLoading: false, reservationDataById: action.payload }
+  }
+  if (action.type === GET_RESERVATION_DATA_FROM_ID_FAILURE) {
+    return { ...state, reservationDataByIdLoading: false, reservationDataByIdError: action.payload }
+  }
 
   return state
 }

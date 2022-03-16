@@ -759,3 +759,29 @@ div.movie-yt {
   color: var(--mainBrown);
   text-decoration: underline
 }
+
+
+/* info page */
+.info-page {
+  min-height: 50vh;
+  margin: 50px 0;
+}
+
+.info-page__h1 {
+  padding: 15px 10px;
+  background-color: var(--mainBrown);
+  font-size: 1.25em;
+  color: white;
+}
+
+.info-page__label {
+  display: block;
+  margin: 50px 0;
+  text-align: center;
+}
+
+#info-page-input {
+  margin-top: 10px;
+  padding: 5px 10px;
+  width: 80%;
+}
