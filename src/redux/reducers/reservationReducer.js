@@ -33,7 +33,6 @@ export const reservationReducer = (state = reservationInitialState, action) => {
     return { ...state, loading: action.payload.loading, errorMsg: action.payload.error }
   }
   if (action.type === SET_PICKED_DATE) {
-    console.log(action.payload)
     return { ...state, pickedDate: action.payload }
   }
   if (action.type === SHOW_RESERVATION_SUMMARY) {

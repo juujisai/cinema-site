@@ -767,7 +767,8 @@ div.movie-yt {
   margin: 50px 0;
 }
 
-.info-page__h1 {
+.info-page__h1,
+.check-reservation__h1 {
   padding: 15px 10px;
   background-color: var(--mainBrown);
   font-size: 1.25em;
@@ -784,4 +785,44 @@ div.movie-yt {
   margin-top: 10px;
   padding: 5px 10px;
   width: 80%;
+}
+
+/* reservation info */
+
+.check-reservation__p {
+  margin: 5px 10px;
+  font-size: 0.8em;
+}
+
+.check-reservation-data {
+  margin: 25px 10%;
+}
+
+.check-reservation-data-reservation__div {
+  margin: 10px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.movie-name-res {
+  margin-top: 15px;
+  padding-bottom: 10px;
+  text-align: center;
+  text-transform: uppercase;
+  border-bottom: 4px solid var(--mainBrown);
+}
+
+.check-reservation-data-reservation__span {
+  font-weight: bold;
+  color: var(--mainBrown);
+  text-align: right;
+}
+
+.check-reservation-data-reservation__div:nth-last-of-type(1) {
+  font-size: 0.7em;
+}
+
+.reservation-time {
+  /* font-size: 0.8em; */
 }
