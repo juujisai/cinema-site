@@ -99,3 +99,28 @@
 .banner-page-squares__span--current {
   background-color: #f00;
 }
+
+@media (min-width: 600px) {
+
+  .banner__wrap {
+    height: 50vh;
+
+  }
+
+  .banner__wrap-info {
+    padding: 20px 10%;
+    width: 100%;
+  }
+
+  .banner-page-squares {
+    height: 25px;
+  }
+
+
+  .banner-page-squares__span {
+    width: 25px;
+    height: 25px;
+    margin-right: 20px;
+  }
+
+}

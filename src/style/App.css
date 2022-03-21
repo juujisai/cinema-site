@@ -452,7 +452,8 @@ div.movie-yt {
   right: 5%;
   top: 10px;
   font-size: 2em;
-  color: var(--darkBrown)
+  color: var(--darkBrown);
+  z-index: 10
 }
 
 
@@ -823,6 +824,246 @@ div.movie-yt {
   font-size: 0.7em;
 }
 
-.reservation-time {
-  /* font-size: 0.8em; */
+
+@media (min-width: 400px) {
+
+  .navi {
+    padding: 15px 0;
+  }
+
+
+  .main-menu__li {
+    line-height: 5;
+  }
+
+  .main-menu__li__a:after {
+    height: 30%;
+  }
+
+  .movie-page-info-thumbnail {
+    margin: 0 auto;
+    width: 70%;
+  }
+
+
+
+  .reservation-rows {
+    margin: 0 3%;
+  }
+
+  .ticket-seat {
+    margin: 2px;
+    width: 20px;
+    height: 20px;
+  }
+
+
+  .reservation-summary {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+}
+
+
+@media (min-width: 600px) {
+  :root {
+    --bannerHeight: 60vh;
+  }
+
+  .navi {
+    padding: 20px 0;
+  }
+
+  .menu-button {
+    font-size: 1.5em;
+  }
+
+  .main-menu__li {
+    line-height: 7;
+  }
+
+  .main-menu__li__a {
+    font-size: 1.1em;
+  }
+
+  .main-menu__li__a.active:after {
+    left: 20px;
+  }
+
+  .banner__h1,
+  .banner__h2 {
+    padding-left: 40px;
+  }
+
+  .banner__h1 {
+    padding-top: 30px;
+  }
+
+  .banner__h2 {
+    font-size: 1.0em;
+    padding-bottom: 60px;
+  }
+
+
+  .main-page-content {
+    margin: 150px 0 50px;
+
+  }
+
+  .movie-preview-cont {
+    margin: 50px auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .movie-preview-cont__h1,
+  .category-page__h1,
+  .main-header__h1 {
+    padding: 25px 20px;
+    width: 100%;
+  }
+
+  .category-page__h1,
+  .main-header__h1 {
+    margin-bottom: 50px;
+  }
+
+  .movie-preview-single-item {
+    margin: 100px auto 0;
+  }
+
+  footer {
+    padding: 25px 10%;
+  }
+
+
+
+  .movie-page-info-cont {
+    margin: 25px 10%;
+  }
+
+  .movie-page-desc,
+  .movies-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  div.movie-yt {
+    font-size: 6em;
+  }
+
+  .movie-page-desc-text {
+    width: 100%;
+  }
+
+  .movie-page-desc-image {
+    width: 100%;
+  }
+
+  .movie-preview-thumbnail__iframe {
+    width: 100%;
+    height: 30%;
+  }
+
+  .filter {
+    font-size: 1.25em;
+  }
+
+  .filter-container {
+    padding: 20px 10%;
+  }
+
+
+
+  .close-icon {
+    right: 10%;
+    top: 30px;
+  }
+
+  .filter-data select {
+
+    padding: 15px 10px 15px;
+  }
+
+
+
+  /* movie reservation preview */
+  .movie-reservation-preview {
+    margin: 50px 20%;
+  }
+
+
+  /* reservation page */
+  .movie-reservation-page__h1 {
+    padding: 25px 20px;
+  }
+
+
+  .reservation-rows {
+    margin: 0 5%;
+  }
+
+  .ticket-seat {
+    margin: 2px;
+    width: 30px;
+    height: 30px;
+  }
+
+
+
+  .reservation-legend {
+    margin: 15px 20%;
+  }
+
+
+
+  /* info page */
+  .check-reservation-data-image {
+    width: 60%;
+    margin: 0 auto;
+  }
+
+
+  .info-page__h1,
+  .check-reservation__h1 {
+    padding: 25px 20px;
+  }
+
+
+  .check-reservation__p {
+    margin: 15px 25px;
+    font-size: 1em;
+  }
+
+  .check-reservation-data {
+    margin: 50px 10%;
+  }
+
+  .check-reservation-data-reservation__div {
+    margin: 20px 0;
+  }
+
+}
+
+
+@media (min-width: 800px) {
+
+  .movies-container,
+  .movie-preview-cont-items {
+    margin: 0 10%;
+  }
+
+  .movie-preview-cont-items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+
 }
