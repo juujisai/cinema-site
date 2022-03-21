@@ -156,5 +156,32 @@
     width: 15px;
     height: 15px;
     margin-right: 20px;
+    cursor: pointer;
+  }
+}
+
+@media (min-width: 1024px) {
+  .banner-page {
+    margin: 0 15%;
+    width: 70%;
+
+  }
+
+  .banner__wrap {
+    height: 50vh;
+  }
+}
+
+
+@media (min-width: 1200px) {
+  .banner-page {
+    margin: 0 auto;
+    max-width: 800px;
+    /* width: 50%; */
+
+  }
+
+  .banner__wrap {
+    max-height: 500px;
   }
 }

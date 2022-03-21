@@ -242,7 +242,7 @@ body {
 }
 
 .error-image {
-  margin: 0 20%;
+  margin: 0 auto;
   width: 60%;
   max-width: 400px;
 }
@@ -1224,5 +1224,252 @@ div.movie-yt {
   .movies-container,
   .movie-preview-cont-items {
     margin: 0 5%;
+  }
+}
+
+
+
+/* desktop */
+@media (min-width: 1024px) {
+  .logo__img {
+    margin: 0 auto;
+    width: 150px;
+  }
+
+  .menu-button {
+    display: none;
+  }
+
+  .main-menu {
+    position: relative;
+    width: 50%;
+    border-top: none;
+    display: flex;
+    align-items: center;
+    justify-content: center
+  }
+
+  .main-menu__li {
+    transform: translate(0) !important;
+    line-height: 2;
+    width: auto;
+    margin-right: 20px;
+    padding-right: 20px;
+  }
+
+  .main-menu__li__a {
+    text-align: left;
+    overflow: hidden;
+    transition: .3s;
+
+  }
+
+  .main-menu__li__a:after {
+    display: block;
+    position: absolute;
+    left: -100%;
+    top: auto;
+    bottom: 0;
+    transform: translateY(0%);
+    width: 100%;
+    height: 3px;
+    content: '';
+    background-color: var(--mainBrown);
+    transition: .3s;
+  }
+
+
+  .main-menu__li__a.active:after {
+    left: -30%;
+  }
+
+  .main-menu__li__a:hover {
+    color: var(--mainBrown);
+    transform: translateX(1px)
+  }
+
+  .movie-preview-thumbnail {
+    transition: .5s;
+  }
+
+  .movie-preview-thumbnail:hover {
+    border-left: 6px solid var(--darkBrown);
+    border-bottom: 6px solid var(--darkBrown);
+
+  }
+
+  .movie-preview-cont-items {
+    justify-content: center;
+    margin: 0 auto;
+  }
+
+  .movies-container {
+    justify-content: center;
+  }
+
+  .movie-preview-single-item {
+    margin: 100px 30px 0;
+  }
+
+  .main-button {
+    transition: .3s;
+  }
+
+  .main-button:hover {
+    background-color: var(--darkBrown);
+    cursor: pointer;
+  }
+
+  .movie-page-info-cont {
+    width: 50%;
+  }
+
+  .movie-page-info-cont div {
+    margin: 10px 0;
+  }
+
+  .movie-page-info-thumbnail {
+    width: 40%;
+  }
+
+  .movie-yt svg:hover {
+    cursor: pointer;
+  }
+
+  .movie-page-desc-text {
+    margin: 100px 10%;
+  }
+
+  .filter-controls {
+    cursor: pointer;
+  }
+
+  .filters-filters {
+    align-items: flex-start;
+  }
+
+  .filter-data {
+    width: 25%;
+  }
+
+  .close-icon {
+    transition: .3s;
+  }
+
+  .close-icon:hover {
+    cursor: pointer;
+    color: var(--mainBrown);
+  }
+
+
+  .reservation-days {
+    margin: 100px 10%;
+    cursor: pointer;
+  }
+
+  .movie-reservation-preview {
+    margin: 100px 10%;
+  }
+
+  .movie-reservation-preview-thumbnail {
+    width: 20%;
+  }
+
+  .movie-reservation-preview-info {
+    width: 70%;
+  }
+
+  .reservation-summary-cont {
+    display: block;
+  }
+
+  .reservation-summary-cont__div {
+    margin-bottom: 40px;
+    width: 100%;
+  }
+
+  .reservation-summary__h3 {
+    text-align: left;
+    margin: 15px 0 50px;
+  }
+
+  .reservation-summary-cont__button {
+    cursor: pointer;
+  }
+
+  .info-page__label {
+    margin: 150px auto;
+    width: 50%;
+  }
+
+  .check-reservation-data {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .check-reservation-data-reservation {
+    width: 60%;
+    margin-left: 50px;
+  }
+
+  .ticket-seat {
+    cursor: pointer;
+  }
+
+  .movie-reservation-page__h1--name {
+    text-align: center;
+  }
+
+}
+
+
+@media (min-width: 1200px) {
+  .ticket-seat {
+    margin: 5px;
+  }
+
+  .reservation-rows {
+    margin: 0 12.5%;
+  }
+
+
+  .reservation-legend {
+    margin-top: 50px;
+  }
+
+  .reservation-data__form {
+    margin: 20px 30% 0;
+  }
+
+  .check-reservation-data-image {
+    width: 20%
+  }
+
+  .movie-page-info {
+    justify-content: space-around;
+  }
+
+  .movie-page-info-thumbnail {
+    width: 20%;
+  }
+
+  .movie-page-info-cont {
+    width: 40%;
+  }
+
+  .movie-page-desc-image {
+    height: 300px;
+  }
+
+}
+
+
+
+
+
+@media (min-width: 1600px) {
+  body {
+    margin: 0 auto;
+    max-width: 1600px;
   }
 }

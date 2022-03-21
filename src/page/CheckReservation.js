@@ -57,6 +57,9 @@ const CheckReservation = ({ reservation, getReservationById, movies }) => {
             {movie}
           </div>
           <div className="check-reservation-data-reservation__div">
+            Rezerwacja na: <span className='check-reservation-data-reservation__span'>{name}</span>
+          </div>
+          <div className="check-reservation-data-reservation__div">
             Data rezerwacji: <span className='check-reservation-data-reservation__span'>{date}</span>
           </div>
           <div className="check-reservation-data-reservation__div">
