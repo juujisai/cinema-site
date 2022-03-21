@@ -124,3 +124,37 @@
   }
 
 }
+
+
+@media (orientation: landscape) {
+  .banner-page {
+    margin: 0 5%;
+    width: 90%;
+    overflow: hidden;
+
+  }
+}
+
+@media (orientation: landscape) and (min-width: 600px) {
+  .banner-page {
+    margin: 0 10%;
+    width: 80%;
+    overflow: hidden;
+
+  }
+
+  .banner__wrap {
+    height: 80vh;
+  }
+
+  .banner-page-squares {
+    height: 15px;
+  }
+
+
+  .banner-page-squares__span {
+    width: 15px;
+    height: 15px;
+    margin-right: 20px;
+  }
+}
