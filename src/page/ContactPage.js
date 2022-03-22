@@ -15,7 +15,7 @@ const ContactPage = () => {
         />
       </label>
       <div className="page__button">
-        <Link to={`/checkreservation/${idOfReservation}`} className="button main-button" onClick={() => console.log('click')}>Sprawdź rezerwację</Link>
+        <Link to={`/checkreservation/${idOfReservation}`} className="button main-button" >Sprawdź rezerwację</Link>
       </div>
     </div>
   );

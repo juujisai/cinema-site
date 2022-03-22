@@ -13,7 +13,7 @@ const videoPlayTimeCode = ['m1', 'm2', 'm3', 'm4', 'm5']
 
 const CheckReservation = ({ reservation, getReservationById, movies }) => {
   const param = useParams().name
-  const [resData, setResData] = React.useState(reservation.reservationDataById)
+  const [resData, setResData] = React.useState([])
 
   React.useEffect(() => {
     if (resData.length === 0) {
