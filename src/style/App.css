@@ -913,12 +913,17 @@ div.movie-yt {
 
   }
 
-  .movie-preview-cont {
+  .movie-preview-cont,
+  .category-page {
     margin: 50px auto;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
+  }
+
+  .page__button {
+    width: 100%;
   }
 
   .movie-preview-cont__h1,
@@ -1166,6 +1171,7 @@ div.movie-yt {
     margin: 0 auto;
     width: 40%;
   }
+
 
 
 }
@@ -1425,6 +1431,9 @@ div.movie-yt {
     height: 80vh;
   }
 
+  .category-page {
+    justify-content: center;
+  }
 
 }
 
